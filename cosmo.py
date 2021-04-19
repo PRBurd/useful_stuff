@@ -49,7 +49,7 @@ class cosmology:
 	def D_c(self):
 		if self.omega_k+self.omega_M+self.omega_Lambda == 1:
 			H_0 = (self.H0/3.086)*10**(-19)
-			D_h = 299792458/(self.H_0)
+			D_h = 299792458/(H_0)
 			E = lambda redshift,o_k,o_M,o_Lambda:1/np.sqrt(o_M*(1+redshift)**3+o_k*(1+redshift)**2+o_Lambda)
 			Dc = D_h * quad(E,0,self.z,args=(self.omega_k,self.omega_M,self.omega_Lambda))[0]
 			return(Dc) # in m
@@ -129,6 +129,6 @@ class cosmology:
 		return(cosmology.m_to_gpc(self,cosmology.D_M(self)))
 	@property
 	def comoving_distance_Gly(self):
-		return(cosmology.s_to_gyr(self,cosmology.t_l(self)))
+		return(cosmology.s_to_gyr(self,cosmology.D_M(self)))
 
 
